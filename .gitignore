@@ -92,6 +92,7 @@ ENV/
 .DS_Store
 
 *.idea
+snippets/corpus
 
 # User-specific stuff
 .idea/**/workspace.xml

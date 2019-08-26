@@ -113,9 +113,10 @@ class Preprocessor(object):
         if not os.path.exists(self.target):
             os.makedirs(self.target)
 
-        # Resolve the fileids to start processing and return the list of 
-        # target file ids to pass to downstream transformers. 
+        # Resolve the fileids to start processing and return the list of
+        # target file ids to pass to downstream transformers.
         return [
             self.process(fileid)
             for fileid in self.fileids(fileids, categories)
         ]
+
