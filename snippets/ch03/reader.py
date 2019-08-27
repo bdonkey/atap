@@ -254,6 +254,9 @@ class PickledCorpusReader(CategorizedCorpusReader, CorpusReader):
 
 if __name__ == '__main__':
     from collections import Counter
+    import os
+
+    c = os.getcwd()
 
     corpus = PickledCorpusReader('../corpus')
     words  = Counter(corpus.words())

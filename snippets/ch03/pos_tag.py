@@ -8,5 +8,5 @@ def tokenize(paragraph):
     for sentence in sents(paragraph):
         yield pos_tag(wordpunct_tokenize(sentence))
 
-sample_text = "The old building is scheduled for demolition. The contractors will begin building a new structure next month."
+sample_text = "The old building is scheduled for demolition. The contractors will begin building a new structure next month. bullshit on the curve"
 print(list(tokenize(sample_text)))
