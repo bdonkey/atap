@@ -47,7 +47,7 @@ def sklearn_frequency_vectorize(corpus):
 def gensim_frequency_vectorize(corpus):
     # The Gensim frequency vectorize method
     import gensim
-    
+
     tokenized_corpus = [list(tokenize(doc)) for doc in corpus]
     id2word = gensim.corpora.Dictionary(tokenized_corpus)
     return [id2word.doc2bow(doc) for doc in tokenized_corpus]
@@ -141,6 +141,7 @@ def gensim_doc2vec_vectorize(corpus):
         TaggedDocument(words, ['d{}'.format(idx)])
         for idx, words in enumerate(corpus)
     ]
+    # ss see Doc2Vec code for detail info
     model = Doc2Vec(docs, size=5, min_count=0)
     return model.docvecs
 
