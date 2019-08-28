@@ -1,15 +1,18 @@
-from sklearn.cross_validation import KFold
+# from sklearn.cross_validation import KFold
+from sklearn.model_selection import KFold
 
 class CorpusLoader(object):
 
     def __init__(self, corpus, folds=None, shuffle=True):
         self.n_docs = len(corpus.fileids())
         self.corpus = corpus
-        self.folds  = folds
+        self.folds = folds
 
         if folds is not None:
             # Generate the KFold cross validation for the loader.
-            self.folds = KFold(self.n_docs, folds, shuffle)
+            # 2019-08-27 this call bombs with wrong arguements
+            # self.folds = KFold(self.n_docs, folds, shuffle)
+            self.folds = KFold(folds, shuffle)
 
     @property
     def n_folds(self):
@@ -17,7 +20,9 @@ class CorpusLoader(object):
         Returns the number of folds if it exists; 0 otherwise.
         """
         if self.folds is None: return 0
-        return self.folds.n_folds
+        # 2019-08-27 not a property use n_splits
+        # return self.folds.n_folds
+        return self.folds.n_splits
 
     def fileids(self, fold=None, train=False, test=False):
 
@@ -53,9 +58,9 @@ class CorpusLoader(object):
 
 
 if __name__ == '__main__':
-    from reader import PickledCorpusReader
+    from snippets.ch04.reader import PickledCorpusReader
 
-    corpus = PickledCorpusReader('corpus')
+    corpus = PickledCorpusReader('../corpus')
     loader = CorpusLoader(corpus, 12)
 
     for fid in loader.fileids(0, test=True):
