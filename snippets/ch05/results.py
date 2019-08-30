@@ -2,7 +2,7 @@ import json
 import tabulate
 import numpy as np
 
-fields = ['model', 'precision', 'recall', 'accuracy', 'f1']
+fields = ['model', 'precision', 'recall', 'accuracy', 'time', 'f1' ]
 table = []
 
 with open('results.json', 'r') as f:

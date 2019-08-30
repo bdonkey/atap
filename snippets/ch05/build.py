@@ -53,6 +53,8 @@ class TextNormalizer(BaseEstimator, TransformerMixin):
             'J': wn.ADJ
         }.get(pos_tag[0], wn.NOUN)
 
+        r = self.lemmatizer.lemmatize(token, tag)
+
         return self.lemmatizer.lemmatize(token, tag)
 
     def fit(self, X, y=None):

@@ -3,12 +3,15 @@ import numpy as np
 from sklearn.model_selection import KFold
 from sklearn.model_selection import train_test_split as tts
 
+
 class CorpusLoader(object):
 
     def __init__(self, reader, folds=12, shuffle=True, categories=None):
         self.reader = reader
-        self.folds  = KFold(n_splits=folds, shuffle=shuffle)
-        self.files  = np.asarray(self.reader.fileids(categories=categories))
+        self.folds = KFold(n_splits=folds, shuffle=shuffle)
+        self.files = np.asarray(self.reader.fileids(categories=categories))
+
+        i = 1
 
     def fileids(self, idx=None):
         if idx is None:
@@ -41,3 +44,4 @@ if __name__ == '__main__':
 
     corpus = PickledCorpusReader('../corpus')
     loader = CorpusLoader(corpus, 12)
+    i= 1

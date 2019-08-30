@@ -11,6 +11,7 @@ bs4 = "*"
 readability-lxml = "*"
 sklearn = "*"
 gensim = "*"
+tabulate = "*"
 
 [requires]
 python_version = "3.7"
