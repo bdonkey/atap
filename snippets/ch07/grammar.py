@@ -3,7 +3,7 @@
 import re
 import nltk
 
-from reader import PickledCorpusReader
+#from reader import PickledCorpusReader
 
 GRAMMAR = """
     S -> NNP VP
