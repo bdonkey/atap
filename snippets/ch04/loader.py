@@ -31,16 +31,27 @@ class CorpusLoader(object):
             return self.corpus.fileids()
 
         # Otherwise, identify the fold specifically and get the train/test idx
-        train_idx, test_idx = [split for split in self.folds][fold]
+        #train_idx, test_idx = [split for split in self.folds][fold]
+        x = self.folds.get_n_splits(self.corpus.fileids())
 
+        fids = self.corpus.fileids()
         # Now determine if we're in train or test mode.
         if not (test or train) or (test and train):
             raise ValueError(
                 "Please specify either train or test flag"
             )
 
+        # from http://bit.ly/2UGky2s
+        indices = []
+        i = 0
+        while True:
+            train_idx, test_idx = next(self.folds.split(fids))
+            if i == fold:
+                indices = train_idx if train else test_idx
+                break
+            i += 1
+
         # Select only the indices to filter upon.
-        indices = train_idx if train else test_idx
         return [
             fileid for doc_idx, fileid in enumerate(self.corpus.fileids())
             if doc_idx in indices
@@ -63,5 +74,5 @@ if __name__ == '__main__':
     corpus = PickledCorpusReader('../corpus')
     loader = CorpusLoader(corpus, 12)
 
-    for fid in loader.fileids(0, test=True):
+    for fid in loader.fileids(1, test=True):
         print(fid)

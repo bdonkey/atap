@@ -70,8 +70,12 @@ class KMeansTopics(object):
         One-hot encode the set of documents
         """
         features = set(normalize(document))
-        return np.array([
+        # ss tokej in features... returns true/false
+        # np.array np.short converts it
+        # this is the one-hot
+        npr = np.array([
             token in features for token in self.vocab], np.short)
+        return npr
 
     def cluster(self, corpus):
         """
